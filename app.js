@@ -3,7 +3,6 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-
 // require express-handlebars here
 const exphbs = require('express-handlebars')
 const restaurantList = require('./restaurant.json')
@@ -28,13 +27,18 @@ app.get('/', (req, res) => {
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
   const restaurants = restaurantList.results.filter(restaurant => {
-    return restaurant.name.toLowerCase().includes(keyword) || restaurant.name_en.toLowerCase().includes(keyword)
+    return restaurant.name.toLowerCase().includes(keyword.toLocaleLowerCase()) || restaurant.name_en.toLowerCase().includes(keyword.toLocaleLowerCase())
   })
   res.render('index', { restaurants: restaurants, keyword: keyword })
 })
 
-app.get('/restaurants/8', (req, res) => {
-  res.render('show')
+app.get('/restaurants/:restaurant_id', (req, res) => {
+  // console.log(typeof req.params.restaurant_id)
+  // console.log(typeof restaurantList.results[0].id)
+  const restaurant = restaurantList.results.find( restaurant => {
+    return restaurant.id.toString() === req.params.restaurant_id
+  })
+  res.render('show', {restaurant: restaurant})
 })
 
 // start and listen on the express server

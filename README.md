@@ -22,17 +22,23 @@
 
 1. 確認本地已安裝 Node.js 與 npm
 2. 打開終端機，輸入以下指令，可 Clone 專案至本地端
-   ```
+
+```
    git clone https://github.com/keitakeiko/restaurant.git
-   ```
+```
+
 3. 進入此專案資料夾
-   ```
+
+```
    cd restaurant
-   ```
+```
+
 4. 安裝 npm 套件
-   ```
+
+```
    輸入 npm install
-   ```
+```
+
 5. 安裝 express 套件
 
 ```
@@ -40,9 +46,11 @@
 ```
 
 6. 安裝 nodemon
-   ```
+
+```
    輸入 npm install -g nodemon
-   ```
+```
+
 7. 啟動伺服器
 
 ```

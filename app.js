@@ -1,11 +1,29 @@
 // require packages used in the project
 const express = require('express')
+const exphbs = require('express-handlebars')
+const restaurantList = require('./restaurant.json')
+const mongoose = require('mongoose')
+
 const app = express()
 const port = 3000
 
-// require express-handlebars here
-const exphbs = require('express-handlebars')
-const restaurantList = require('./restaurant.json')
+// 加入這段 code, 僅在非正式環境時, 使用 dotenv
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
+// connect to mongoose
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true }) 
+const db = mongoose.connection // 取得資料庫連線狀態
+
+// 連線異常
+db.on('error', () => {
+  console.log('mongodb error!')
+})
+// 連線成功
+db.once('open', () => {
+  console.log('mongodb connected')
+})
 
 // setting template engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))

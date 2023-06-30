@@ -15,19 +15,15 @@ const restaurantSchema = new Schema({
   },
   rating: {
     type: Number,
-    required: true
   },
   location: {
     type: String,
-    required: true
   },
   phone: {
     type: String,
-    required: true
   },
   description: {
     type: String,
-    required: true
   }
 })
 

@@ -3,6 +3,7 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const restaurantList = require('./restaurant.json')
 const mongoose = require('mongoose')
+const Restaurant = require('./models/restaurant')
 
 const app = express()
 const port = 3000
@@ -36,10 +37,10 @@ app.use(express.static('public'))
 
 // routes setting
 app.get('/', (req, res) => {
-  // create a variable to store restaurantList
-
-  // past the restaurant data into 'index' partial template
-  res.render('index', { restaurants: restaurantList.results })
+  Restaurant.find()
+    .lean()
+    .then( restaurants => res.render('index', { restaurants: restaurants }))
+    .catch(error => console.log(error)) //錯誤處理
 })
 
 app.get('/search', (req, res) => {

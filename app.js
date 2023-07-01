@@ -33,9 +33,10 @@ app.set('view engine', 'handlebars')
 
 // setting static files
 app.use(express.static('public'))
+app.use(express.urlencoded({ extended: true }))
 
 
-// routes setting
+// 瀏覽全部餐廳
 app.get('/', (req, res) => {
   Restaurant.find()
     .lean()
@@ -43,6 +44,7 @@ app.get('/', (req, res) => {
     .catch(error => console.log(error)) //錯誤處理
 })
 
+// 搜尋餐廳
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
   const restaurants = restaurantList.results.filter(restaurant => {
@@ -51,6 +53,18 @@ app.get('/search', (req, res) => {
   res.render('index', { restaurants: restaurants, keyword: keyword })
 })
 
+// 新增餐廳頁面
+app.get('/restaurants/new', (req, res) => {
+  return res.render('new')
+})
+app.post('/restaurants' ,(req, res) => {
+  const name = req.body.name
+  return Restaurant.create({ name })
+  .then(() => res.redirect('/'))
+  .catch(error => console.log(error))
+})
+
+// 看特定餐廳
 app.get('/restaurants/:restaurant_id', (req, res) => {
   // console.log(typeof req.params.restaurant_id)
   // console.log(typeof restaurantList.results[0].id)
@@ -59,6 +73,9 @@ app.get('/restaurants/:restaurant_id', (req, res) => {
   })
   res.render('show', {restaurant: restaurant})
 })
+
+
+
 
 // start and listen on the express server
 app.listen(port, () => {

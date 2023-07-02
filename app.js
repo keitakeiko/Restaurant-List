@@ -80,6 +80,33 @@ app.get('/restaurants/:id', (req, res) => {
   
 })
 
+// 編輯餐廳
+app.get('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id) 
+    .lean()
+    .then( restaurant => res.render('edit' , { restaurant: restaurant }))
+})
+app.post('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  console.log(req.body)
+  const {name, name_en, category, image, location, phone, google_map, rating, description} = req.body
+  return Restaurant.findById(id)
+   .then(restaurant => {
+    restaurant.name = name
+    restaurant.name_en = name_en 
+    restaurant.category = category
+    restaurant.image = image
+    restaurant.location = location
+    restaurant.phone = phone
+    restaurant.google_map = google_map
+    restaurant.rating = rating
+    restaurant.description = description
+    return restaurant.save()
+   })
+   .then(() => res.redirect(`/restaurants/${id}`))
+   .catch(error => console.log(error))
+})
 
 // start and listen on the express server
 app.listen(port, () => {

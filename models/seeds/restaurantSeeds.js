@@ -17,7 +17,8 @@ db.once('open', () => {
   console.log('mongodb connected!')
 
   Restaurant.create(restaurantList.results)
-  
+
+  // console.log(restaurantList.results)
   // DB 需建齊全，不然會找不到資料
   // for ( let i = 0; i < restaurantList.length; i++) {
   //   Restaurant.create({

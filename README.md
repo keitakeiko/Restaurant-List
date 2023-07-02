@@ -42,7 +42,7 @@
 5. 安裝 express 套件
 
 ```
- 輸入 npm install express@4.16.4
+   輸入 npm install express@4.16.4
 ```
 
 6. 安裝 nodemon
@@ -54,17 +54,17 @@
 7. 啟動伺服器
 
 ```
- 於終端機輸入 nodemon app.js
+   於終端機輸入 nodemon app.js
 ```
 
 8. 顯示以下資訊代表本專案順利運行，輸入網址至瀏覽器便可瀏覽此專案網頁
 
 ```
- expresss is listening on http://localhost:3000
+   expresss is listening on http://localhost:3000
 ```
 
 9. 若要停止使用，請輸入以下指令
 
 ```
-  ctrl + c
+   ctrl + c
 ```

@@ -3,6 +3,8 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const restaurantList = require('./restaurant.json')
 const mongoose = require('mongoose')
+const methodOverride = require('method-override') // 載入 method-override
+
 const Restaurant = require('./models/restaurant')
 
 const app = express()
@@ -34,7 +36,7 @@ app.set('view engine', 'handlebars')
 // setting static files
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
-
+app.use(methodOverride('_method')) // 設定每一筆請求都會透過 methodOverride 進行前置處理
 
 // 瀏覽全部餐廳
 app.get('/', (req, res) => {
@@ -87,7 +89,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
     .lean()
     .then( restaurant => res.render('edit' , { restaurant: restaurant }))
 })
-app.post('/restaurants/:id/edit', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   const id = req.params.id
   // console.log(req.body)
   const {name, name_en, category, image, location, phone, google_map, rating, description} = req.body
@@ -110,7 +112,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
 })
 
 // 刪除餐廳資料
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
   .then( restaurant => restaurant.remove())

@@ -5,12 +5,10 @@ const restaurantSchema = new Schema({
     type: String,
   },
   name: {
-    type: String,
-    required: true
+    type: String,   
   },
   name_en: {
-    type: String,
-    required: true
+    type: String,    
   },
   category: {
     type: String,
@@ -26,8 +24,7 @@ const restaurantSchema = new Schema({
     type: String,
   },
   google_map: {
-    type: String,
-    required: true
+    type: String,    
   },
   description: {
     type: String,

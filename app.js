@@ -89,8 +89,9 @@ app.get('/restaurants/:id/edit', (req, res) => {
 })
 app.post('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
-  console.log(req.body)
+  // console.log(req.body)
   const {name, name_en, category, image, location, phone, google_map, rating, description} = req.body
+
   return Restaurant.findById(id)
    .then(restaurant => {
     restaurant.name = name
@@ -106,6 +107,15 @@ app.post('/restaurants/:id/edit', (req, res) => {
    })
    .then(() => res.redirect(`/restaurants/${id}`))
    .catch(error => console.log(error))
+})
+
+// 刪除餐廳資料
+app.post('/restaurants/:id/delete', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+  .then( restaurant => restaurant.remove())
+  .then(() => res.redirect('/'))
+  .catch( error => console.log(error))
 })
 
 // start and listen on the express server

@@ -12,10 +12,10 @@ router.get('/search', (req, res) => {
 })
 
 // 新增餐廳頁面
-router.get('/restaurants/new', (req, res) => {
+router.get('/new', (req, res) => {
   return res.render('new')
 })
-router.post('/restaurants', (req, res) => {
+router.post('/', (req, res) => {
   const name = req.body.name
   return Restaurant.create({ name })
   .then(() => res.redirect('/'))
@@ -23,7 +23,7 @@ router.post('/restaurants', (req, res) => {
 })
 
 // 看特定餐廳
-router.get('/restaurants/:id', (req, res) => {
+router.get('/:id', (req, res) => {
   // console.log(typeof req.params.restaurant_id)
   // console.log(typeof restaurantList.results[0].id)
   // const restaurant = restaurantList.results.find( restaurant => {
@@ -39,13 +39,13 @@ router.get('/restaurants/:id', (req, res) => {
 })
 
 // 編輯餐廳
-router.get('/restaurants/:id/edit', (req, res) => {
+router.get('/:id/edit', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id) 
     .lean()
     .then( restaurant => res.render('edit' , { restaurant: restaurant }))
 })
-router.put('/restaurants/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   const id = req.params.id
   // console.log(req.body)
   const {name, name_en, category, image, location, phone, google_map, rating, description} = req.body
@@ -68,7 +68,7 @@ router.put('/restaurants/:id', (req, res) => {
 })
 
 // 刪除餐廳資料
-router.delete('/restaurants/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
   .then( restaurant => restaurant.remove())

@@ -3,7 +3,6 @@ const Schema = mongoose.Schema
 const restaurantSchema = new Schema({
   image: {
     type: String,
-    required: true
   },
   name: {
     type: String,
@@ -11,7 +10,7 @@ const restaurantSchema = new Schema({
   },
   category: {
     type: String,
-    required: true
+    
   },
   rating: {
     type: Number,

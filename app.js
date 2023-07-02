@@ -57,7 +57,7 @@ app.get('/search', (req, res) => {
 app.get('/restaurants/new', (req, res) => {
   return res.render('new')
 })
-app.post('/restaurants' ,(req, res) => {
+app.post('/restaurants', (req, res) => {
   const name = req.body.name
   return Restaurant.create({ name })
   .then(() => res.redirect('/'))
@@ -65,16 +65,20 @@ app.post('/restaurants' ,(req, res) => {
 })
 
 // 看特定餐廳
-app.get('/restaurants/:restaurant_id', (req, res) => {
+app.get('/restaurants/:id', (req, res) => {
   // console.log(typeof req.params.restaurant_id)
   // console.log(typeof restaurantList.results[0].id)
-  const restaurant = restaurantList.results.find( restaurant => {
-    return restaurant.id.toString() === req.params.restaurant_id
-  })
-  res.render('show', {restaurant: restaurant})
+  // const restaurant = restaurantList.results.find( restaurant => {
+  //   return restaurant.id.toString() === req.params.restaurant_id
+  // })
+  // res.render('show', {restaurant: restaurant})
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .lean()
+    .then( restaurant => res.render('show', { restaurant: restaurant }))
+    .catch(error => console.log(error))
+  
 })
-
-
 
 
 // start and listen on the express server

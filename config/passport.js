@@ -27,7 +27,7 @@ module.exports = app => {
     done(null, user.id)
   })
   passport.deserializeUser((id, done) => {
-    User.findById(_id)
+    User.findById(id)
       .lean()
       .then(user => done(null, user))
       .catch(err => console.log(err, null))

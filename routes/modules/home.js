@@ -8,8 +8,10 @@ const Restaurant = require('../../models/restaurant')
 
 // 瀏覽全部餐廳
 router.get('/', (req, res) => {
-  Restaurant.find()
+  const userId = req.user._id // 變數設定
+  Restaurant.find({ userId }) // 加入查詢條件
     .lean()
+    .sort({ _id: 'asc' })
     .then( restaurants => res.render('index', { restaurants: restaurants }))
     .catch(error => console.log(error)) //錯誤處理
 })

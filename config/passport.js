@@ -12,7 +12,7 @@ module.exports = app => {
     User.findOne({ email })
       .then(user => {
         if (!user) {
-          return done(null. false, { message: 'This email is not registered before.' })
+          return done(null, false, { message: 'This email is not registered before.' })
         }
         if (user.password !== password) {
           return done(null, false, { message: 'Email or password incorrect.' })

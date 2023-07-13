@@ -45,6 +45,7 @@ router.post('/register', (req, res) => {
     if (user) {
       errors.push({ message: '這個 Email 已經註冊過了。' })
       res.render('register', {
+        errors,
         name,
         email,
         password,
@@ -58,7 +59,7 @@ router.post('/register', (req, res) => {
       .then(hash => User.create({ 
         name,
         email,
-        hash // 用雜湊值取代原本的使用者密碼
+        password: hash // 用雜湊值取代原本的使用者密碼
       }))
       .then(() => res.redirect('/'))
       .catch(err => console.log(err))

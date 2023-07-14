@@ -56,7 +56,7 @@ header {
 
 .card img {
   height: 180px;
-  width: 250px;
+  /* width: 250px; */
 }
 
 .card-title {

@@ -1,70 +1,93 @@
-# 我的餐廳介紹
+# 我的餐廳清單
 
 ## 專案介紹
 
-### 提供餐廳基本資料及訂位資訊，亦可進行關鍵字查詢。
+#### 透過這個網站，創造專屬於自己的美食餐廳地圖。網頁可紀錄餐廳資訊，探索餐廳完也可隨時修改或刪除。
 
 ## 產品功能
 
-- 瀏覽主頁所有餐廳列表
+- 可用臉書登入帳號，或創建自己帳號，隨時記錄專屬的餐廳清單
 - 點擊任一餐廳可閱讀詳細資訊
 - 可以關鍵字查詢符合店名之店家列表
 
-## 開發工具
+## 開發工具\*\*\*\*
 
 - Node.js
 - Express
 - Express-handlebars
+- Body-parser
+- Express-session
+- Passport
+- Passport-local
+- Passport-facebook
+- Mongoose
+- Connect-flash
+- Bcryptjs
+- Method-override
+- Dotenv
 - Bootstrap
-- Font-awesome
 
 ## 開始使用
 
 1. 確認本地已安裝 Node.js 與 npm
-2. 打開終端機，輸入以下指令，可 Clone 專案至本地端
+
+2. 創建資料夾並使用 terminal 的 cd 指令將路徑移至該資料夾
+
+3. 打開終端機，輸入以下指令，可 Clone 專案至本地端
 
 ```
-   git clone https://github.com/keitakeiko/restaurant.git
+git clone https://github.com/keitakeiko/restaurant.git
 ```
 
-3. 進入此專案資料夾
+4. 進入此專案資料夾，安裝相關開發軟體
 
 ```
-   cd restaurant
+npm install
 ```
 
-4. 安裝 npm 套件
+5. 安裝 nodemon
 
 ```
-   輸入 npm install
+npm install -g nodemon
 ```
 
-5. 安裝 express 套件
+6. 在專案新增 .env 資料夾，放入自己 MongoDB 連線字串
 
 ```
-   輸入 npm install express@4.16.4
+MONGODB_URI = "<你的連線字串>"
 ```
 
-6. 安裝 nodemon
+7. 可建立種子資料
 
 ```
-   輸入 npm install -g nodemon
+npm run seed
 ```
 
-7. 啟動伺服器
+seed 提供兩組預設帳號體驗
+| Name | Email | Password |
+| --- | --- | --- |
+| user1 | user1@example.com | 12345678 |
+| user2 | user2@example.com | 12345678 |
+
+8. 啟動伺服器
 
 ```
-   於終端機輸入 nodemon app.js
+npm run dev
 ```
 
-8. 顯示以下資訊代表本專案順利運行，輸入網址至瀏覽器便可瀏覽此專案網頁
+9. 顯示以下資訊代表本專案順利運行，輸入網址至瀏覽器便可瀏覽此專案網頁
 
 ```
    expresss is listening on http://localhost:3000
 ```
 
-9. 若要停止使用，請輸入以下指令
+10. 若要停止使用，請輸入以下指令
 
 ```
    ctrl + c
 ```
+
+# 開發人員
+
+- Keiko
+- Alpha Camp

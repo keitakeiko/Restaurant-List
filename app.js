@@ -10,9 +10,11 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
 
-const restaurantList = require('./restaurant.json')
-const Restaurant = require('./models/restaurant')
 const routes = require('./routes') // 路徑設定為 /routes 會自動去尋找目錄下叫 index 的檔案
+const Restaurant = require('./models/restaurant')
+const restaurantList = require('./restaurant.json')
+
+
 require('./config/mongoose')
 
 const app = express()

@@ -21,7 +21,7 @@ const { authenticator } = require('../middleware/auth')// 掛載 middleware
 router.use('/restaurants', authenticator, restaurants)
 // 將網址結構符合 / 字串的 request 導向 home 模組 
 router.use('/users', users)
-// 將網址結構符合 / 字串的 request 導向 home 模組 
+// 將網址結構符合 /auth 字串的 request 導向 auth 模組 
 router.use('/auth', auth)
 // 將網址結構符合 /users 字串的 request 導向 users 模組 
 router.use('/', authenticator, home)

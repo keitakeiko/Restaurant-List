@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const User = require('../../models/users')
 const passport = require('passport')
 const bcrypt = require('bcryptjs')
+
+const User = require('../../models/users')
 
 router.get('/login', (req, res) => {
   res.render('login')
@@ -23,8 +24,8 @@ router.post('/register', (req, res) => {
   const { name, email, password, confirmPassword } = req.body
   const errors = []
 
-  if (!name || !email || !password || !confirmPassword) {
-    errors.push({ message: '所有欄位都是必填。' })
+  if ( !email || !password || !confirmPassword) {
+    errors.push({ message: '除了 Name 以外，所有欄位都是必填。' })
   }
   if (password !== confirmPassword) {
     errors.push({ message: '密碼與確認密碼不相符！' })
@@ -66,7 +67,10 @@ router.post('/register', (req, res) => {
   })
 })
 
-router.get('/logout', (req, res) => {
+router.get('/logout', (req, res, err) => {
+  req.logOut(err => {
+    if (err) console.log(err)
+  })
   req.logout()
   req.flash('success_msg', '恭喜成功登出!')
   res.redirect('/users/login')

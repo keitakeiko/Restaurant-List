@@ -14,15 +14,6 @@
       <label for="category" class="form-label">分類<span class="text-danger">*</span></label>
       <input type="text" class="form-control" id="category" placeholder="餐廳類型" list="categoryOptions" name="category" value="{{ restaurant.category }}"
         required />
-      {{! 使用datalist，讓使用者可選擇或自行輸入 }}
-      <datalist id="categoryOptions">
-        <option>美式</option>
-        <option>咖啡</option>
-        <option>酒吧</option>
-        <option>中東料理</option>
-        <option>日本料理</option>
-        <option>義式餐廳</option>
-      </datalist>
     </div>
     <div class="mb-3">
       <label for="image" class="form-label">圖片連結<span class="text-danger">*</span></label>

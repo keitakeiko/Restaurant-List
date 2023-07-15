@@ -26,7 +26,7 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 
-// setting static files
+// 所有路由都會先經過 app.use
 app.use(session({
   secret: 'Oh!Yeah~',
   resave: false,

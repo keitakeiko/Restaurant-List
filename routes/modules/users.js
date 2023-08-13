@@ -68,7 +68,7 @@ router.post('/register', (req, res) => {
 })
 
 router.get('/logout', (req, res, err) => {
-  req.logOut(err => {
+  req.logout(err => {
     if (err) console.log(err)
   })
   req.logout()

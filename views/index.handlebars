@@ -1,67 +1,59 @@
 
-
 <!-- search bar -->
-<div class="container-sm mt-5 ">
-  <div class="search-bar-outer col-md-6 col-10 mx-auto align-items-sm-center">
-    {{!-- <div class="search-bar-inner"> --}}
+<div class="container search-bar mb-5">
+  <div class="search-bar-outer">
+    <div class="search-bar-inner">
       <form action="/search">
-        <div class=" d-flex justify-content-between">
-          <div class="d-flex">
-            <button class="btn btn-light" type="submit" id="search-button"><i class="fas fa-search"></i></button>
-            <input type="text" name="keywords" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
-              aria-describedby="search-button" value="{{keywords}}" style="border-radius:15px; max-width:250px " />
-          </div>
-            
-            
-          
-          <div class="col-2">
-            <div class="d-flex input-group">
-              <select class="form-select" id="sort" name="sort">
-                <option disabled selected>sort</option>
-                <option>A > Z</option>
-                <option>Z > A</option>
-                <option>類別</option>
-                <option>地區</option>
-              </select>
+        <h4 class="mb-2 search-bar-title">尋找餐廳：</h4>
+        <div class="d-flex flex-column flex-sm-row">
+          <div class="input-group">
+            <input type="text" name="keywords" class="form-control" placeholder="輸入餐廳、分類"
+              aria-label="Restaurant Name..." aria-describedby="search-button" value="{{keywords}}" />
+            <div class="input-group-append">
+              <button class="btn btn-major" type="submit" id="search-button">
+                <i class="fas fa-search"></i>
+              </button>
             </div>
+          </div>
+
+          <div class="form-group">
+            <select class="form-select" id="sort" name="sort">
+              <option disabled selected>sort</option>
+              <option value="1">A > Z</option>
+              <option value="2">Z > A</option>
+            </select>
           </div>
         </div>
       </form>
-
-      <div class="text-right">
-        <a href="/restaurants/new"><button class="btn btn-secondary" type="submit">新增餐廳</button></a>
-      </div>
-      
-    {{!-- </div> --}}
+    </div>
   </div>
 </div>
+
 
 <!-- restaurant list -->
 <div class="container mt-5">
   <div class="row">
-    <div class="col-md-10 col-12 mx-auto">
-      <div class="row row-cols-1 row-cols-sm-3">
+    <div class="col-sm-10 col-12 mx-auto">
+      <div class="row row-cols-sm-3">
 
         <!-- use each to render the list  -->
         {{#each restaurants}}
-        <div class="col">
-          {{!-- <div class="card mb-1"> --}}
-            <div class="card mb-3">
-              <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
-              <div class="card-body p-3">
-                <h6 class="card-title mb-1">{{this.name}}</h6>
-                
-                <div class="restaurant-category mb-1">
-                  <i class="fas fa-utensils pr-2"></i> {{this.category}}
-                </div>
-              
-                <span class="badge rounded-pill bg-danger">
-                    {{this.rating}}
-                  <i class="fas fa-star fa-xs"></i>
-                </span>
-
+        <div class="px-1 mb-3 my-0">
+          <div class="card p-0">
+            <a href="/restaurants/{{this._id}}" class="text-secondary">
+              <img class="card-img-top figure-img img-fluid" src="{{this.image}}" alt="{{this.name}}">
+            </a>
+            <div class="card-body p-3">
+              <h6 class="card-title mb-1">{{this.name}}</h6>
+            
+              <div class="restaurant-category mb-1">
+                <i class="fas fa-utensils pr-2 mr-3" style="margin-right:3px;"></i>{{this.category}}
               </div>
-
+              <span class="badge rounded-pill text-bg-danger font-weight-normal">
+                {{this.rating}}
+                <i class="fas fa-star fa-xxs"></i>
+              </span>
+            </div>
               <div class="card-footer d-flex justify-content-end flex-wrap">
                 <a href="/restaurants/{{this._id}}/edit"><button class="btn btn-link btn-sm">Edit</button></a>
                 <a href="/restaurants/{{this._id}}"><button class="btn btn-link btn-sm">Details</button></a>
@@ -69,10 +61,7 @@
                   <button type="submit" class="btn btn-danger btn-sm text-white" onclick="return confirm(`確定刪除 {{ this.name }} ? `)">delete</button>
                 </form>
               </div>
-              
-
-            </div>
-          {{!-- </div> --}}
+          </div>
         </div>
         {{/each}}
         

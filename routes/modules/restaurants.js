@@ -20,12 +20,6 @@ router.post('/', (req, res) => {
 
 // 看特定餐廳
 router.get('/:id', (req, res) => {
-  // console.log(typeof req.params.restaurant_id)
-  // console.log(typeof restaurantList.results[0].id)
-  // const restaurant = restaurantList.results.find( restaurant => {
-  //   return restaurant.id.toString() === req.params.restaurant_id
-  // })
-  // res.render('show', {restaurant: restaurant})
   const userId = req.user._id
   const _id = req.params.id
   return Restaurant.findOne({ _id: _id, userId})
@@ -46,7 +40,6 @@ router.get('/:id/edit', (req, res) => {
 router.put('/:id', (req, res) => {
   const userId =req.user._id
   const _id = req.params.id
-  // console.log(req.body)
   const {name, name_en, category, image, location, phone, google_map, rating, description} = req.body
 
   return Restaurant.findOne({ _id: _id, userId })

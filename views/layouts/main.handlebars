@@ -15,31 +15,34 @@
 </head>
 
 <body>
-
-  <!-- navigation -->
-  <nav class="navbar navbar-light bg-light mb-5">
-    <div class="container">
-      <a class="navbar-brand" href="/">
-        <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png" width="30"
-          height="30" class="d-inline-block align-top" alt="我的餐廳清單">
-        {{#if isAuthenticated}}
+  <header>
+    <!-- navigation -->
+    <nav class="navbar navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png" width="30"
+            height="30" class="d-inline-block align-top" alt="我的餐廳清單">
+          {{#if isAuthenticated}}
           {{user.name}}的餐廳清單
           {{else}}
-            餐廳清單
-        {{/if}}
-      </a>
-
-      {{#if isAuthenticated}}
+          餐廳清單
+          {{/if}}
+        </a>
+    
+        {{#if isAuthenticated}}
         <a href="/users/logout" class="btn btn-info">Logout</a>
-      {{else}}
+        {{else}}
         <a href="/users/login" class="btn btn-info">Login</a>
-      {{/if}}
-
-      
-    </div>
+        {{/if}}
+    
+    
+      </div>
+    </nav>
+  </header>
   </nav>
-  
-  
+    <div class="banner"></div>
+  </header>
+
 
   {{!-- partial templates will replace the part of "body" here --}}
   {{{ body }}}
